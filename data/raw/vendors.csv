@@ -1,0 +1,16 @@
+vendor_id,vendor_name,category,region,payment_terms,is_preferred
+V001,Alpha Materials Inc.,RawMaterial,US,30,0
+V002,Beta Consulting Co.,Service,TW,90,0
+V003,Gamma Logistics Ltd.,Logistics,CN,90,1
+V004,Delta IT Services,IT,US,90,1
+V005,Epsilon Industrial,Manufacturing,TW,60,0
+V006,Zeta Packaging,Packaging,EU,45,1
+V007,Eta Chemicals,Chemical,CN,30,0
+V008,Theta Components,Component,CN,45,0
+V009,Iota Precision Tools,Tool,US,90,0
+V010,Kappa Systems,System,TW,90,1
+V011,Lambda Trading,Trading,TW,45,1
+V012,Mu Construction,Construction,US,45,0
+V013,Nu Clean Services,Cleaning,TW,45,1
+V014,Xi Import Export,Trading,TW,90,1
+V015,Omicron Foods,Food,EU,90,0

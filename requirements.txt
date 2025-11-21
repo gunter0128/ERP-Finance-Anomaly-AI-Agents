@@ -1,0 +1,11 @@
+pandas
+numpy
+scikit-learn
+python-dateutil
+streamlit
+matplotlib
+seaborn
+pathlib
+openai>=1.40.0
+python-dotenv
+joblib

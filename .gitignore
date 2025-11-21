@@ -1,0 +1,67 @@
+# ==========================
+# Python
+# ==========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environments
+.venv/
+env/
+venv/
+
+# ==========================
+# OS / Editor
+# ==========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# ==========================
+# Logs
+# ==========================
+*.log
+
+# Streamlit Cache
+.streamlit/
+
+# ==========================
+# Data Files
+# ==========================
+
+
+data/processed/*
+!data/processed/.gitkeep
+
+models/*
+!models/.gitkeep
+
+
+# ==========================
+# Large Files
+# ==========================
+*.npy
+*.npz
+*.pt
+*.bin
+*.h5
+*.onnx
+*.pkl
+*.model
+*.ckpt
+
+# ==========================
+# Temporary files
+# ==========================
+*.tmp
+*.tmp.csv
+temp/
+
+# ==========================
+# Environment Variables
+# ==========================
+.env
+*.env
+.env.local
