@@ -112,6 +112,42 @@ def page_dashboard():
         height=400,
     )
 
+# ---------- 異常發票 AI 分析頁 ----------
+
+def page_anomaly_analysis():
+    st.header("🧠 異常發票 AI 分析")
+
+    st.markdown("""
+    這個頁面會針對 **被模型標記為異常的發票**，
+    用 LLM 做一份「異常發票分析報告」：
+
+    - 【重點版】：給主管快速看今天有哪些異常類型
+    - 【完整版】：詳細說明各種異常情境與建議做法
+    """)
+
+    df = load_invoice_anomaly_result()
+    if df is None:
+        st.error("找不到 invoice_anomaly_result.csv，請先完成資料前處理與推論。")
+        return
+
+    top_n = st.slider("選擇要給 AI 看的異常發票數量（Top N）", 10, 100, 30, step=5)
+
+    if st.button("🔍 生成異常發票分析報告（呼叫 OpenAI）"):
+        with st.spinner("AI 正在分析異常發票，請稍候..."):
+            summary, full = analyze_anomalies(df_anomaly_result=df, top_n=top_n)
+
+        st.session_state["anom_summary"] = summary
+        st.session_state["anom_full"] = full
+
+    if "anom_summary" in st.session_state:
+        st.subheader("【重點版】異常發票分析摘要")
+        st.text(st.session_state["anom_summary"])
+
+        st.subheader("【完整版】異常發票詳細說明")
+        with st.expander("點我展開完整版報告"):
+            st.text(st.session_state["anom_full"])
+
+
 
 # -----------------------------------
 # 發票查詢頁
@@ -279,18 +315,19 @@ def main():
     st.sidebar.title("ERP AI 財務助理")
     page = st.sidebar.radio(
         "選擇頁面",
-        ["📊 Dashboard", "🧾 發票查詢", "🏭 供應商風險", "📑 CFO 報告"],
+        ["📊 Dashboard", "🧾 發票查詢", "🧠 異常發票分析", "🏭 供應商風險", "📑 CFO 報告"],
     )
 
     if page == "📊 Dashboard":
         page_dashboard()
     elif page == "🧾 發票查詢":
         page_invoice_explorer()
+    elif page == "🧠 異常發票分析":
+        page_anomaly_analysis()
     elif page == "🏭 供應商風險":
         page_vendor_risk()
     elif page == "📑 CFO 報告":
         page_cfo_report()
-
 
 if __name__ == "__main__":
     main()
